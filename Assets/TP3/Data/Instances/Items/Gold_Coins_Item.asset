@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Name: Gold_Coins_Item
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
+  itemName: "\xD3bolos Lunares"
+  itemDescription: Monedas pesadas forjadas bajo la luna. (+10 de Oro)
+  itemIcon: {fileID: 6355695395338774597, guid: 11a0233384ae475469c17886195e1b2d, type: 3}

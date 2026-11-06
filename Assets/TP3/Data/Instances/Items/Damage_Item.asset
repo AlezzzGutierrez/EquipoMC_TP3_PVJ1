@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Name: Damage_Item
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
+  itemName: Filo del Alba
+  itemDescription: "Hoja imbuida con una fuerza ancestral. (+10 de Da\xF1o)"
+  itemIcon: {fileID: 3162807744017042959, guid: f22ebbf995570184b9ba03d3167f8e21, type: 3}

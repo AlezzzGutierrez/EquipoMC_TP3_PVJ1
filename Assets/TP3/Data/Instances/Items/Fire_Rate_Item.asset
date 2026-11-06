@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Name: Fire_Rate_Item
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
+  itemName: Pulso Arcano
+  itemDescription: Acelera el flujo del tiempo en tus armas. (+20% de Velocidad de
+    Ataque)
+  itemIcon: {fileID: 886849660564937388, guid: 82be8fc22d1107a40b9f6bde0c0ce126, type: 3}
