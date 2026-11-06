@@ -8,9 +8,8 @@ public class PlayerProjectile : MonoBehaviour
 
     private float damage;
     private float speed;
-    private bool initialized;
 
-    [SerializeField] private float lifeTime = 3f;
+    [SerializeField] private float lifetime = 3f;
 
     private void Awake()
     {
@@ -21,23 +20,17 @@ public class PlayerProjectile : MonoBehaviour
     {
         damage = projectileDamage;
         speed = projectileSpeed;
-        initialized = true;
 
-        rb.linearVelocity = (Vector2)transform.up * speed;
+        rb.linearVelocity = transform.right * speed;
 
-        Destroy(gameObject, lifeTime);
+        Destroy(gameObject, lifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!initialized)
-            return;
-
-        // No dañar al propio jugador.
         if (other.CompareTag("Player"))
             return;
 
-        // Aplicar daño si el objeto es un enemigo.
         if (other.CompareTag("Enemy"))
         {
             other.SendMessage(
@@ -47,7 +40,6 @@ public class PlayerProjectile : MonoBehaviour
             );
         }
 
-        // Destruir el proyectil al impactar.
         Destroy(gameObject);
     }
 }

@@ -304,12 +304,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 674491338760512182, guid: afce7282455c3ac4c9faa6841a4a3e15, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 674491338760512182, guid: afce7282455c3ac4c9faa6841a4a3e15, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 674491338760512182, guid: afce7282455c3ac4c9faa6841a4a3e15, type: 3}
+      propertyPath: startingWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 685516485a2362243835a0569d144a5b, type: 2}
     - target: {fileID: 3744104485051820456, guid: afce7282455c3ac4c9faa6841a4a3e15, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5924755816113794229, guid: afce7282455c3ac4c9faa6841a4a3e15, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3788079011973059004, guid: afce7282455c3ac4c9faa6841a4a3e15, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afce7282455c3ac4c9faa6841a4a3e15, type: 3}

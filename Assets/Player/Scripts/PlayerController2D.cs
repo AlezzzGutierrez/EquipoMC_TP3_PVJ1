@@ -22,7 +22,6 @@ public class PlayerController2D : MonoBehaviour
     private void Update()
     {
         ReadMovement();
-        AimAtMouse();
     }
 
     private void FixedUpdate()
@@ -38,23 +37,6 @@ public class PlayerController2D : MonoBehaviour
         movement = new Vector2(horizontal, vertical).normalized;
     }
 
-    private void AimAtMouse()
-    {
-        if (mainCamera == null)
-            return;
-
-        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(
-            Input.mousePosition
-        );
-
-        Vector2 direction = (Vector2)(mousePosition - transform.position);
-
-        if (direction.sqrMagnitude > 0.001f)
-        {
-            aimDirection = direction.normalized;
-            transform.up = aimDirection;
-        }
-    }
 
     private void MovePlayer()
     {
