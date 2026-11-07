@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Script: {fileID: 11500000, guid: b72a49ee80d86454380c1d67156935b2, type: 3}
   m_Name: Healt_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: "Coraz\xF3n de F\xE9nix"
-  itemDescription: Un latido cristalino que reaviva el alma. (+50 Puntos de Vida)
-  itemIcon: {fileID: 6616133199226636194, guid: a56a7c60a82c7c3478749596e57ce8ac, type: 3}
+  itemName: Objeto
+  itemDescription: "Descripci\xF3n"
+  itemIcon: {fileID: 21300000, guid: a11b878d437c3d927ce2348305d66e70, type: 3}

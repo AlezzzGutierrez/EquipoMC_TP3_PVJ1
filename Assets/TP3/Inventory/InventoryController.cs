@@ -11,7 +11,7 @@ public class InventoryController : MonoBehaviour
 
     [Header("Selección de Inventario")]
     public int selectedIndex = 0; // Representa el índice del elemento actualmente seleccionado en la lista de elementos recolectados
-    public int columnsCount = 5;  // Cantidad de columnas por fila en la cuadrícula visual
+    public int columnsCount = 10;  // Cantidad de columnas por fila en la cuadrícula visual
 
     [Header("Interacción en el Mundo")]
     public ItemDataSO currentNearbyItem; // Referencia al ítem cercano que el jugador puede recoger

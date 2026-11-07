@@ -1,2 +1,5 @@
 ﻿<Solution>
+  <Project Path="HeyHeyThere.PixelUIFree.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="HeyHeyThere.PixelUIFree.Editor.csproj" />
 </Solution>
