@@ -18,3 +18,4 @@ MonoBehaviour:
   projectileSpeed: 12
   weaponPrefab: {fileID: 3821114500997546165, guid: 1f163d5bc35462d4caba0f85ddb1df6d, type: 3}
   projectilePrefab: {fileID: 4332949782044643858, guid: ce570aad5348db9448ca194a55b2557e, type: 3}
+  pickupPrefab: {fileID: 146983342535839275, guid: 28208c3316758ae47aa7a9696a50c5a0, type: 3}

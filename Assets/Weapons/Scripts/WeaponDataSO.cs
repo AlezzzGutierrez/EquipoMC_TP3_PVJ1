@@ -24,4 +24,7 @@ public class WeaponDataSO : ScriptableObject
     [Header("Prefabs")]
     public GameObject weaponPrefab;
     public GameObject projectilePrefab;
+
+    [Header("Objeto recogible")]
+    public GameObject pickupPrefab;
 }

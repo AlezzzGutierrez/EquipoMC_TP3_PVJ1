@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4426979098179708482}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,9 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d26c51e1d1bcdd4b8c03ff72311f6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
-  playerStats: {fileID: 11400000, guid: b1a24ffc1f9e7724c8fafce0476a7825, type: 2}
-  projectilePrefab: {fileID: 4332949782044643858, guid: ce570aad5348db9448ca194a55b2557e, type: 3}
-  firePoint: {fileID: 5924755816113794229}
+  startingWeapon: {fileID: 0}
+  weaponLocalPosition: {x: 0.45, y: 0}
 --- !u!114 &4426979098179708482
 MonoBehaviour:
   m_ObjectHideFlags: 0
