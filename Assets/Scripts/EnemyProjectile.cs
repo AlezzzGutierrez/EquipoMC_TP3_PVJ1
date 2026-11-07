@@ -2,15 +2,26 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public float speed = 5f;
+    public float damage = 1f;
+    private Vector2 direction;
+
+    public void SetDirection(Vector2 dir)
     {
-        
+        direction = dir.normalized;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(direction * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            // Aquí puedes llamar al script de vida del jugador si colisiona
+            Destroy(gameObject);
+        }
     }
 }
