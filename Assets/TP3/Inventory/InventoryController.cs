@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 public class InventoryController : MonoBehaviour
 {
+    [Header("Prueba inicial")]
+    public List<ItemDataSO> itemsDePrueba = new List<ItemDataSO>(); // Lista de elementos para poblar el inventario al iniciar el juego.
+
     [Header("Configuración de UI")]
     public GameObject inventoryPanel; // Referencia al panel del inventario en la interfaz de usuario
 
@@ -23,10 +26,19 @@ public class InventoryController : MonoBehaviour
 
     void Start()
     {
-        // Asegura que el panel del inventario esté cerrado al inicio del juego
+        // Asegura que el panel del inventario esté cerrado al inicio
         if (inventoryPanel != null)
         {
             inventoryPanel.SetActive(false);
+        }
+
+        // Agrega elementos de prueba al inventario si la lista no está vacía
+        if (itemsDePrueba != null && itemsDePrueba.Count > 0)
+        {
+            foreach (var item in itemsDePrueba)
+            {
+                AddItem(item);
+            }
         }
     }
 
