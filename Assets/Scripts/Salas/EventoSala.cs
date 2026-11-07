@@ -6,6 +6,7 @@ public class EventoSala : MonoBehaviour
     [Header("Configuración de la sala")]
     [SerializeField] private GameObject cierresSala;
 
+    [SerializeField] private SpawnerEnemigos spawner;
     private bool salaActivada = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -16,8 +17,7 @@ public class EventoSala : MonoBehaviour
         {
             salaActivada = true;
             cierresSala.SetActive(true);
-
-            Debug.Log("¡Sala activada!");
+            spawner.ActivarSpawner();
         }
     }
 }
