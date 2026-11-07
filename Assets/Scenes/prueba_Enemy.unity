@@ -304,6 +304,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1436452768510914456, guid: a14b4c9ccef6b804796caa751174745d, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3dcd7b0164a9fba4aa2b3a9abc9be0eb, type: 2}
+    - target: {fileID: 2417370292068602214, guid: a14b4c9ccef6b804796caa751174745d, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3dcd7b0164a9fba4aa2b3a9abc9be0eb, type: 2}
     - target: {fileID: 6939071093254371158, guid: a14b4c9ccef6b804796caa751174745d, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -365,6 +373,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie2
       objectReference: {fileID: 0}
+    - target: {fileID: 4448776105618835546, guid: 326c355511d4e3246bee0d7f41ebbbb6, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3080a45ace7ee4f4da60b466631b02ee, type: 2}
+    - target: {fileID: 8400538361473311525, guid: 326c355511d4e3246bee0d7f41ebbbb6, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3080a45ace7ee4f4da60b466631b02ee, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -378,10 +394,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1166047389414683384, guid: 721db21d0ef0c6a43808e67efa658e3f, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 48ade0ba699e1cc46b2ee463ff991cba, type: 2}
     - target: {fileID: 1274670428641959203, guid: 721db21d0ef0c6a43808e67efa658e3f, type: 3}
       propertyPath: m_Name
       value: Esqueleto2
       objectReference: {fileID: 0}
+    - target: {fileID: 3617593712170291319, guid: 721db21d0ef0c6a43808e67efa658e3f, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 48ade0ba699e1cc46b2ee463ff991cba, type: 2}
     - target: {fileID: 9207077142669106514, guid: 721db21d0ef0c6a43808e67efa658e3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.79
@@ -475,6 +499,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2161146805663395928, guid: 3b39f7a4bf1d4a845be265d3db44d08e, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: de3df7ed5cc26804298de6b81a478a6d, type: 2}
+    - target: {fileID: 5550009580656948414, guid: 3b39f7a4bf1d4a845be265d3db44d08e, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: de3df7ed5cc26804298de6b81a478a6d, type: 2}
     - target: {fileID: 8626055451490323626, guid: 3b39f7a4bf1d4a845be265d3db44d08e, type: 3}
       propertyPath: m_Name
       value: Bat
@@ -532,6 +564,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2712056148180249587, guid: d08e489efad33554bb6e971271d64774, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: d65f4d8749c4f5a45ac8135fbd676b2c, type: 2}
+    - target: {fileID: 2798679514309157391, guid: d08e489efad33554bb6e971271d64774, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: d65f4d8749c4f5a45ac8135fbd676b2c, type: 2}
     - target: {fileID: 8145204020240763960, guid: d08e489efad33554bb6e971271d64774, type: 3}
       propertyPath: m_Name
       value: Rata
@@ -549,10 +589,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 246196087376359471, guid: 20578c8b65d6d414aabb6463c467ac2c, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: f8d82dbdf9217394d95df6fa2ac1ec80, type: 2}
     - target: {fileID: 1272384220411006883, guid: 20578c8b65d6d414aabb6463c467ac2c, type: 3}
       propertyPath: m_Name
       value: Zombie1
       objectReference: {fileID: 0}
+    - target: {fileID: 5942217971354262542, guid: 20578c8b65d6d414aabb6463c467ac2c, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: f8d82dbdf9217394d95df6fa2ac1ec80, type: 2}
     - target: {fileID: 8999605876078970708, guid: 20578c8b65d6d414aabb6463c467ac2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.45
@@ -606,6 +654,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5912196744747819126, guid: 55b7bf07aac0c784b967dfd39833726d, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 40e98e59cb9c4b84f905b29a3ea71988, type: 2}
+    - target: {fileID: 6276028210781248935, guid: 55b7bf07aac0c784b967dfd39833726d, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 40e98e59cb9c4b84f905b29a3ea71988, type: 2}
     - target: {fileID: 6742644903830403465, guid: 55b7bf07aac0c784b967dfd39833726d, type: 3}
       propertyPath: m_Name
       value: Esqueleto

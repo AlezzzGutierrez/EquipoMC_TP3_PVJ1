@@ -3,14 +3,27 @@ using UnityEngine;
 public class EnemyAI2D : MonoBehaviour
 {
     [Header("Configuración de Datos")]
-    public EnemyDataSO enemyData; // Se asigna el ScriptableObject correspondiente
+    [SerializeField] private EnemyDataSO enemyData;
 
     private Transform player;
-    private float currentCooldown;
+    private float currentHealth;
+    private float lastAttackTime;
+    private Rigidbody2D rb;
 
-    void Start()
+    private void Start()
     {
-        // Busca al jugador por tag o etiqueta en la escena
+        rb = GetComponent<Rigidbody2D>();
+        
+        if (enemyData != null)
+        {
+            currentHealth = enemyData.MaxHealth;
+        }
+        else
+        {
+            Debug.LogWarning($"El enemigo {gameObject.name} no tiene asignado un EnemyDataSO.");
+        }
+
+        // Busca automáticamente al jugador por etiqueta ("Player")
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -18,37 +31,72 @@ public class EnemyAI2D : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if (player == null) return;
+        if (player == null || enemyData == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // Comportamiento según el rango definido en el ScriptableObject
-        if (distanceToPlayer <= enemyData.range)
+        if (distanceToPlayer > enemyData.AttackRange)
         {
-            // Lógica de ataque o disparo si está en rango
-            AtacarJugador();
+            MoveTowardsPlayer();
         }
-        else if (distanceToPlayer <= 10f /* Rango de detección opcional */)
+        else
         {
-            // Persecución en vista cenital (2D top-down)
-            transform.position = Vector2.MoveTowards(transform.position, player.position, enemyData.speed * Time.deltaTime);
-        }
-
-        if (currentCooldown > 0)
-        {
-            currentCooldown -= Time.deltaTime;
+            TryAttack();
         }
     }
 
-    void AtacarJugador()
+    private void MoveTowardsPlayer()
     {
-        if (currentCooldown <= 0)
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.linearVelocity = new Vector2(direction.x * enemyData.MoveSpeed, rb.linearVelocity.y);
+    }
+
+    private void TryAttack()
+    {
+        // Detiene el movimiento al atacar
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+        if (Time.time >= lastAttackTime + enemyData.AttackCooldown)
         {
-            // Dependiendo si es melee o shooter, disparamos proyectil o hacemos daño directo
-            // (Si es shooter, aquí se instancia EnemyProjectile)
-            currentCooldown = enemyData.cooldown;
+            lastAttackTime = Time.time;
+            ExecuteAttack();
         }
+    }
+
+    private void ExecuteAttack()
+    {
+        if (enemyData.IsRanged && enemyData.ProjectilePrefab != null)
+        {
+            // Lógica de ataque a distancia
+            GameObject proj = Instantiate(enemyData.ProjectilePrefab, transform.position, Quaternion.identity);
+            Vector2 dir = (player.position - transform.position).normalized;
+            Rigidbody2D projRb = proj.GetComponent<Rigidbody2D>();
+            if (projRb != null)
+            {
+                projRb.linearVelocity = dir * enemyData.ProjectileSpeed;
+            }
+        }
+        else
+        {
+            // Lógica de ataque cuerpo a cuerpo
+            Debug.Log($"{enemyData.EnemyName} atacó al jugador haciendo {enemyData.AttackDamage} de daño.");
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log($"{enemyData.EnemyName} ha muerto.");
+        Destroy(gameObject);
     }
 }
