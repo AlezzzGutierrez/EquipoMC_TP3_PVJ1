@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5912196744747819126}
   m_Layer: 0
   m_Name: Esqueleto
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4880dbfcb3fb7f48971990d695ea101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI2D
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 40e98e59cb9c4b84f905b29a3ea71988, type: 2}
 --- !u!114 &5912196744747819126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230b896c5eae35c4390e5fe4071ccc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 40e98e59cb9c4b84f905b29a3ea71988, type: 2}
 --- !u!1 &7823194943399912714
 GameObject:
   m_ObjectHideFlags: 0

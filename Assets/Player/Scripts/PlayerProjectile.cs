@@ -46,26 +46,24 @@ public class PlayerProjectile : MonoBehaviour
             }
         }
 
+
         rb.linearVelocity = transform.right * speed;
 
         Destroy(gameObject, lifetime);
     }
 
+    //modificado
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Nunca dañar ni destruirse al tocar al jugador.
         if (other.CompareTag("Player"))
             return;
 
-        if (other.CompareTag("Enemy"))
-        {
-            other.SendMessage(
-                "TakeDamage",
-                damage,
-                SendMessageOptions.DontRequireReceiver
-            );
-        }
+        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
 
-        Destroy(gameObject);
+        if (enemyHealth != null)
+        {
+            enemyHealth.RecibirDanio(damage);
+            Destroy(gameObject);
+        }
     }
 }

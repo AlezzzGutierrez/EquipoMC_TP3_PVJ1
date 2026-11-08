@@ -86,7 +86,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1544975445, guid: d33598d781682e049a53a0a13104ef29, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,7 +135,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4880dbfcb3fb7f48971990d695ea101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI2D
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 48ade0ba699e1cc46b2ee463ff991cba, type: 2}
 --- !u!114 &3617593712170291319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230b896c5eae35c4390e5fe4071ccc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 48ade0ba699e1cc46b2ee463ff991cba, type: 2}
 --- !u!1 &2187692964321451176
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,5 +405,5 @@ SpriteRenderer:
   m_Size: {x: 0.5555556, y: 0.33333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
