@@ -85,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5352286359449648278, guid: ae2c84d4e78e8a243a715eebb536dcfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI2D
   enemyData: {fileID: 11400000, guid: de3df7ed5cc26804298de6b81a478a6d, type: 2}
---- !u!114 &3313460801678985969
+--- !u!114 &5550009580656948414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

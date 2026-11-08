@@ -18,7 +18,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void RecibirDanio(float danio)
     {
+        Debug.Log("EnemyHealth recibió daño: " + danio);
         currentHealth -= danio;
+        Debug.Log("Vida restante: " + currentHealth);
         if (currentHealth <= 0)
         {
             Morir();
@@ -27,13 +29,19 @@ public class EnemyHealth : MonoBehaviour
 
     void Morir()
     {
-        // Emitimos el evento de muerte enviando la recompensa configurada
+        Debug.Log("El enemigo murió.");
+        Debug.Log("EnemyData asignado: " + (enemyData != null));
+
         if (enemyData != null)
         {
+            Debug.Log("Enviando evento de muerte.");
             OnEnemyKilled?.Invoke(enemyData.reward);
         }
+        else
+        {
+            Debug.LogWarning("El enemigo no tiene EnemyDataSO asignado.");
+        }
 
-        // Destruimos el objeto del enemigo
         Destroy(gameObject);
     }
 }
