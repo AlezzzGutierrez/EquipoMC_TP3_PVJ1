@@ -4,56 +4,65 @@ using System.Collections.Generic;
 public class InventoryController : MonoBehaviour
 {
     [Header("Prueba inicial")]
-    public List<ItemDataSO> itemsDePrueba = new List<ItemDataSO>(); // Lista de elementos para poblar el inventario al iniciar el juego.
+    public List<ItemDataSO> itemsDePrueba = new List<ItemDataSO>();
 
     [Header("Configuración de UI")]
-    public GameObject inventoryPanel; // Referencia al panel del inventario en la interfaz de usuario
+    public GameObject inventoryPanel;
+
+    [Header("Referencia a la Vista del Inventario")]
+    public InventoryView inventoryView;
 
     [Header("Lista de Elementos del Inventario")]
-    public List<ItemDataSO> collectedItems = new List<ItemDataSO>(); // Lista que almacena los elementos recolectados por el jugador
+    public List<ItemDataSO> collectedItems = new List<ItemDataSO>();
 
     [Header("Selección de Inventario")]
-    public int selectedIndex = 0; // Representa el índice del elemento actualmente seleccionado en la lista de elementos recolectados
-    public int columnsCount = 10;  // Cantidad de columnas por fila en la cuadrícula visual
+    public int selectedIndex = 0; // Índice del slot actualmente seleccionado en la cuadrícula del inventario
+    public int columnsCount = 10; //Cantidad de columnas en la cuadrícula del inventario
 
     [Header("Interacción en el Mundo")]
     public ItemDataSO currentNearbyItem; // Referencia al ítem cercano que el jugador puede recoger
 
     [Header("Capacidad del Inventario")]
-    public int maxSlots = 20; // Número máximo de elementos que el inventario puede contener
+    public int maxSlots = 20; // Número máximo de slots en el inventario
 
-    private bool isOpen = false; //Variable para controlar si el inventario está abierto o cerrado
+    private bool isOpen = false;
 
-    // Evento aque permite que otros scripts notifiquen cuando un ítem ha sido recogido, para que el inventario pueda actualizarse automáticamente
+    // Evento para notificar cuando un ítem es recogido
     public static event System.Action<ItemDataSO> OnItemPickedUp;
-
-    // Método auxiliar público para notificar la recolección
+    
+    // Método para invocar el evento de recogida de ítem
     public static void TriggerItemPickedUp(ItemDataSO item)
     {
         OnItemPickedUp?.Invoke(item);
     }
 
+    //Llamado cuando el objeto se habilita
     void OnEnable()
     {
-        // Cuando se recolecte un ítem del mundo, se añada automáticamente al inventario
         OnItemPickedUp += HandleItemPickedUp;
     }
 
+    //Llamado cuando el objeto se deshabilita
     void OnDisable()
     {
-        // Evita fugas de memoria o errores al destruir el objeto
         OnItemPickedUp -= HandleItemPickedUp;
     }
 
     void Start()
     {
-        // Asegura que el panel del inventario esté cerrado al inicio
+        // Inicialmente, el panel del inventario está cerrado
         if (inventoryPanel != null)
         {
             inventoryPanel.SetActive(false);
         }
 
-        // Agrega elementos de prueba al inventario si la lista no está vacía
+        // Inicializa la referencia a InventoryView si no se ha asignado en el Inspector
+        if (inventoryView == null)
+        {
+            inventoryView = GetComponentInChildren<InventoryView>(true);
+        }
+
+        // Inicializa la vista del inventario al inicio con los ítems de prueba si los hay
         if (itemsDePrueba != null && itemsDePrueba.Count > 0)
         {
             foreach (var item in itemsDePrueba)
@@ -65,74 +74,63 @@ public class InventoryController : MonoBehaviour
 
     void Update()
     {
-        // Detecta la tecla "I" para abrir o cerrar el inventario
+        // Manejo de entrada para abrir/cerrar el inventario y recoger ítems con la tecla I
         if (Input.GetKeyDown(KeyCode.I))
         {
-            ToggleInventory();
+            ToggleInventory(); // Alterna la visibilidad del inventario
         }
 
-        // Detecta la tecla "F" exclusivamente para recoger el ítem cercano del suelo
+        // Manejo de entrada para recoger ítems cercanos con la tecla F
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (currentNearbyItem != null)
+            if (currentNearbyItem != null) // Verifica si hay un ítem cercano para recoger
             {
-                // Intenta agregar el ítem al inventario usando tu función
                 if (AddItem(currentNearbyItem))
                 {
-                    // Limpia la referencia del suelo una vez recogido con éxito
-                    currentNearbyItem = null;
+                    currentNearbyItem = null; // Una vez recogido, se elimina la referencia al ítem cercano
                 }
             }
         }
 
-        // Detecta las teclas de movimiento horizontal (Derecha / D)
+        // Manejo de entrada para navegar por los slots del inventario a traves de las teclas de flecha o WASD
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            // Mueve la selección a la derecha si no está en el último elemento
             if (collectedItems.Count > 0 && selectedIndex < collectedItems.Count - 1)
             {
                 selectedIndex++;
             }
         }
-        // Detecta las teclas de movimiento horizontal (Izquierda / A)
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            // Mueve la selección a la izquierda si no está en el primer elemento
             if (selectedIndex > 0)
             {
                 selectedIndex--;
             }
         }
-        // Detecta las teclas de movimiento vertical hacia ABAJO (Abajo / S)
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
-            // Mueve la selección hacia abajo en la cuadrícula si no está en la última fila
             if (selectedIndex + columnsCount < collectedItems.Count)
             {
                 selectedIndex += columnsCount;
             }
         }
-        // Detecta las teclas de movimiento vertical hacia ARRIBA (Arriba / W)
         else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
-            // Mueve la selección hacia arriba en la cuadrícula si no está en la primera fila
             if (selectedIndex - columnsCount >= 0)
             {
                 selectedIndex -= columnsCount;
             }
         }
 
-        // Detecta la tecla (R) para eliminar el elemento seleccionado en el inventario
+        // Manejo de entrada para eliminar un ítem del inventario con la tecla R
         if (Input.GetKeyDown(KeyCode.R))
         {
-            // Verifica que haya elementos en el inventario y que el índice seleccionado sea válido
             if (collectedItems.Count > 0 && selectedIndex < collectedItems.Count)
             {
                 ItemDataSO itemToRemoveFromSlot = collectedItems[selectedIndex];
 
                 if (RemoveItem(itemToRemoveFromSlot))
                 {
-                    // Ajusta el índice seleccionado para que no se quede fuera de rango si borramos el último
                     if (selectedIndex >= collectedItems.Count && collectedItems.Count > 0)
                     {
                         selectedIndex = collectedItems.Count - 1;
@@ -142,7 +140,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    // Función para manejar el evento cuando se recoge un ítem del mundo
+    // Maneja la recogida de un ítem y lo agrega al inventario
     private void HandleItemPickedUp(ItemDataSO newItem)
     {
         if (newItem != null)
@@ -151,34 +149,53 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    // Función para abrir o cerrar el inventario
+    //Cambia el estado del inventario (abierto/cerrado) y actualiza la vista si se abre
     public bool ToggleInventory()
     {
         isOpen = !isOpen;
         if (inventoryPanel != null)
         {
             inventoryPanel.SetActive(isOpen);
+            if (isOpen && inventoryView != null)
+            {
+                inventoryView.ForceRefresh(); // Actualiza la vista del inventario al abrirlo
+            }
         }
-        return isOpen;
+        return isOpen; // Devuelve el estado actual del inventario (abierto o cerrado)
     }
 
-    // Función para agregar un ítem al inventario
+    // Método para agregar un ítem al inventario, devuelve true si se agregó con éxito, false si el inventario está lleno
     public bool AddItem(ItemDataSO newItem)
     {
+        // Verifica si hay espacio en el inventario antes de agregar el ítem
         if (collectedItems.Count < maxSlots)
         {
             collectedItems.Add(newItem);
+
+            // Refresca la interfaz visual al instante
+            if (inventoryView != null)
+            {
+                inventoryView.ForceRefresh();
+            }
+
             return true;
         }
+
         return false;
     }
 
-    // Función para eliminar un ítem del inventario
+    // Método para eliminar un ítem del inventario, devuelve true si se eliminó con éxito, false si el ítem no estaba en el inventario
     public bool RemoveItem(ItemDataSO itemToRemove)
     {
         if (collectedItems.Contains(itemToRemove))
         {
             collectedItems.Remove(itemToRemove);
+
+            if (inventoryView != null)
+            {
+                inventoryView.ForceRefresh();
+            }
+
             return true;
         }
         return false;

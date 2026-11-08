@@ -4,7 +4,7 @@ using TMPro;
 
 public class InventoryView : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Referencias")]
     public InventoryController inventoryController;
     public Transform gridContainer;
     public RectTransform selectionCursor;
@@ -14,50 +14,76 @@ public class InventoryView : MonoBehaviour
     public TextMeshProUGUI headerTitleText;
     public TextMeshProUGUI headerDescriptionText;
 
-    private Image[] slotItemImages;
+    private Image[] slotItemImages; // Array para almacenar las referencias a los iconos de los slots
 
     void Start()
     {
-        // Si no enganchamos el controlador, lo buscamos en el mismo objeto
+        // Si no se ha asignado el InventoryController desde el Inspector, intenta obtenerlo
         if (inventoryController == null)
-            inventoryController = GetComponent<InventoryController>();
+            inventoryController = GetComponentInParent<InventoryController>();
 
-        // Guardamos las referencias de los iconitos de cada slot al arrancar
-        if (gridContainer != null)
-        {
-            slotItemImages = new Image[gridContainer.childCount];
-
-            for (int i = 0; i < gridContainer.childCount; i++)
-            {
-                Transform iconChild = gridContainer.GetChild(i).Find("ItemIcon");
-                if (iconChild != null)
-                {
-                    slotItemImages[i] = iconChild.GetComponent<Image>();
-                }
-            }
-        }
+        InitializeSlots(); // Inicializa las referencias de los iconos de los slots
+        ForceRefresh(); // Fuerza la actualización visual al inicio
     }
 
     void Update()
     {
         if (inventoryController == null) return;
 
-        UpdateSlots();
         MoveCursor();
+        UpdateHeaderInfo();
+    }
+
+    // Inicializa las referencias de los iconos de los slots
+    void InitializeSlots()
+    {
+        // Asegura de que gridContainer no sea nulo
+        if (gridContainer != null)
+        {
+            // Crea un array del tamaño del número de hijos en gridContainer
+            slotItemImages = new Image[gridContainer.childCount];
+
+            // Recorre cada hijo del gridContainer y obtiene la referencia al componente Image del icono del slot
+            for (int i = 0; i < gridContainer.childCount; i++)
+            {
+                Transform iconChild = gridContainer.GetChild(i).Find("ItemIcon");
+                if (iconChild != null)
+                {
+                    slotItemImages[i] = iconChild.GetComponent<Image>(); // Almacena la referencia al componente Image del icono del slot
+                }
+            }
+        }
+    }
+
+    // Método público para forzar la actualización de los slots y la información del header
+    public void ForceRefresh()
+    {
+        if (slotItemImages == null || slotItemImages.Length == 0)
+        {
+            InitializeSlots();
+        }
+
+        UpdateSlots();
         UpdateHeaderInfo();
     }
 
     // Pinta o limpia los iconos de los slots según lo que tengamos guardado
     void UpdateSlots()
     {
-        var items = inventoryController.collectedItems;
+        // Asegura de que inventoryController y slotItemImages no sean nulos
+        if (inventoryController == null || slotItemImages == null) return;
 
+        var items = inventoryController.collectedItems; // Obtiene la lista de items del InventoryController
+
+        // Recorre cada slot y actualiza su icono según el item correspondiente
         for (int i = 0; i < slotItemImages.Length; i++)
         {
+            // Si el slot no tiene un Image asignado, salta al siguiente
             if (slotItemImages[i] == null) continue;
 
             bool hasItem = i < items.Count && items[i] != null;
 
+            // Si hay un item en el slot y tiene un icono, lo asigna; de lo contrario, limpia el slot
             if (hasItem && items[i].itemIcon != null)
             {
                 slotItemImages[i].sprite = items[i].itemIcon;
@@ -72,7 +98,7 @@ public class InventoryView : MonoBehaviour
         }
     }
 
-    // Salta el cursor al slot que estamos seleccionando
+    // Mueve el cursor de selección al slot activo según el índice seleccionado en el InventoryController
     void MoveCursor()
     {
         if (selectionCursor == null || gridContainer == null) return;
@@ -83,19 +109,20 @@ public class InventoryView : MonoBehaviour
         {
             Transform activeSlot = gridContainer.GetChild(index);
 
-            // Lo metemos como hijo del slot activo y lo centramos
             selectionCursor.SetParent(activeSlot, false);
             selectionCursor.anchoredPosition = Vector2.zero;
             selectionCursor.localScale = Vector3.one;
-            
+
             selectionCursor.gameObject.SetActive(true);
-            selectionCursor.SetAsLastSibling(); // Lo mandamos al frente para que no se tape
+            selectionCursor.SetAsLastSibling();
         }
     }
 
-    // Muestra el nombre, descripción e icono arriba cuando seleccionas algo
+    // Actualiza la información del header (tooltip) según el item seleccionado
     void UpdateHeaderInfo()
     {
+        if (inventoryController == null) return;
+
         var items = inventoryController.collectedItems;
         int index = inventoryController.selectedIndex;
 
@@ -111,7 +138,6 @@ public class InventoryView : MonoBehaviour
         }
         else
         {
-            // Si el slot está vacío, limpiamos el panel de arriba
             if (headerIcon) headerIcon.enabled = false;
             if (headerTitleText) headerTitleText.text = "";
             if (headerDescriptionText) headerDescriptionText.text = "";

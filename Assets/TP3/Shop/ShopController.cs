@@ -1,23 +1,27 @@
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopController : MonoBehaviour
 {
-    [Header("Referencias de Datos de ScriptableObjects: Stats del Jugador")]
+    [Header("Referencias de Datos de Stats del Jugador")]
     public PlayerStatsSO playerStats;
 
-    [Header("Referencias de UI para Mensajes")]
-    public TextMeshProUGUI messageText;     // Referencia al componente TextMeshProUGUI para mostrar mensajes al jugador
+    [Header("Referencia al Inventario")]
+    public InventoryController inventoryController;
 
-    [Header("Mensaje por defecto")]
-    public string insufficientFundsMessage = "No tienes suficientes monedas para comprar esta mejora.";
+    [Header("Lista de Ítems (ItemDataSO) Disponibles para la Tienda")]
+    public List<ItemDataSO> allPossibleItems;
 
-    [Header("Costos Inicial de Mejora")]
+    [Header("Referencias a los Slots de la UI")]
+    public ShopSlotUI[] shopSlots;
+
+    [Header("Costos Iniciales de Mejora")]
     public int healthUpgradeCost = 40;
     public int speedUpgradeCost = 20;
     public int damageUpgradeCost = 30;
     public int attackSpeedUpgradeCost = 25;
     public int staminaUpgradeCost = 15;
+    public int defenseUpgradeCost = 35;
 
     [Header("Incremento de Costo por Compra")]
     public int healthCostIncrease = 15;
@@ -25,6 +29,7 @@ public class ShopController : MonoBehaviour
     public int damageCostIncrease = 10;
     public int attackSpeedCostIncrease = 10;
     public int staminaCostIncrease = 10;
+    public int defenseCostIncrease = 10;
 
     [Header("Contadores de Compras")]
     public int healthUpgradeCount = 0;
@@ -32,147 +37,199 @@ public class ShopController : MonoBehaviour
     public int damageUpgradeCount = 0;
     public int attackSpeedUpgradeCount = 0;
     public int staminaUpgradeCount = 0;
+    public int defenseUpgradeCount = 0;
 
-    [Header("Valores de Incremento a los Stats del Jugador")]
+    [Header("Valores de Incremento a los Stats tras Comprar")]
     public int healthIncrease = 20;
     public float speedIncrease = 1.5f;
     public int damageIncrease = 5;
     public float attackSpeedIncrease = 0.2f;
-    public float staminaIncrease = 5f; 
+    public float staminaIncrease = 5f;
+    public int defenseIncrease = 5;
 
-    //-- MEJORA DE VIDA --
-    public void BuyHealthUpgrade()
+    private ItemDataSO[] currentShopOffers = new ItemDataSO[4];
+
+    [Header("Panel Visual de la Tienda a Cerrar")]
+    public GameObject shopPanelObject;
+
+    void OnEnable()
     {
-        // Verifica si playerStats no es nulo antes de acceder a sus propiedades
-        if (playerStats == null) return;
+        GenerateRandomShopOffers();
+    }
 
-        // Calcula el costo actual en base a las compras realizadas
-        int currentCost = healthUpgradeCost + (healthUpgradeCount * healthCostIncrease);
+    public void GenerateRandomShopOffers()
+    {
+        if (allPossibleItems == null || allPossibleItems.Count == 0) return;
+        List<ItemDataSO> tempItems = new List<ItemDataSO>(allPossibleItems);
 
-        // Comprueba si el jugador tiene suficientes monedas para comprar la mejora de vida
-        if (playerStats.gold >= currentCost)
+        for (int i = 0; i < tempItems.Count; i++)
         {
-            // Resta el costo de la mejora de vida de las monedas del jugador
-            playerStats.gold -= currentCost;
-            // Aumenta la vida máxima del jugador en la cantidad especificada
-            playerStats.maxHealth += healthIncrease;
-            // Incrementa la cantidad de veces compradas
-            healthUpgradeCount++;
+            ItemDataSO temp = tempItems[i];
+            int randomIndex = Random.Range(i, tempItems.Count);
+            tempItems[i] = tempItems[randomIndex];
+            tempItems[randomIndex] = temp;
         }
-        else
+
+        for (int i = 0; i < shopSlots.Length; i++)
         {
-            ShowMessage(insufficientFundsMessage);
+            if (i < tempItems.Count && shopSlots[i] != null)
+            {
+                currentShopOffers[i] = tempItems[i];
+                ConfigureSlotUI(i, currentShopOffers[i]);
+            }
         }
     }
 
-    //-- MEJORA DE VELOCIDAD --
-    public void BuySpeedUpgrade()
+    private int GetItemCost(ItemDataSO item)
     {
-        // Verifica si playerStats no es nulo antes de acceder a sus propiedades
-        if (playerStats == null) return;
+        if (item == null || string.IsNullOrEmpty(item.itemName)) return 30;
 
-        // Calcula el costo actual en base a las compras realizadas
-        int currentCost = speedUpgradeCost + (speedUpgradeCount * speedCostIncrease);
+        string nameLower = item.itemName.ToLower();
 
-        // Comprueba si el jugador tiene suficientes monedas para comprar la mejora de velocidad
-        if (playerStats.gold >= currentCost)
+        if (nameLower.Contains("espada filosa"))
+            return damageUpgradeCost + (damageUpgradeCount * damageCostIncrease);
+
+        if (nameLower.Contains("escudo protector"))
+            return defenseUpgradeCost + (defenseUpgradeCount * defenseCostIncrease);
+
+        if (nameLower.Contains("elíxir de reflejos"))
+            return attackSpeedUpgradeCost + (attackSpeedUpgradeCount * attackSpeedCostIncrease);
+
+        if (nameLower.Contains("corazón de vitalidad"))
+            return healthUpgradeCost + (healthUpgradeCount * healthCostIncrease);
+
+        if (nameLower.Contains("diamante céfiro"))
+            return speedUpgradeCost + (speedUpgradeCount * speedCostIncrease);
+
+        if (nameLower.Contains("estrella de vigor"))
+            return staminaUpgradeCost + (staminaUpgradeCount * staminaCostIncrease);
+
+        return 30;
+    }
+
+    private string GetDetailedDescription(ItemDataSO item)
+    {
+        if (item == null || string.IsNullOrEmpty(item.itemName)) return "";
+
+        string baseDesc = item.itemDescription;
+        string nameLower = item.itemName.ToLower();
+        string statInfo = "";
+
+        if (nameLower.Contains("espada filosa"))
+            statInfo = $"\n\n<b>Efecto:</b> +{damageIncrease} de Daño";
+        else if (nameLower.Contains("escudo protector"))
+            statInfo = $"\n\n<b>Efecto:</b> +{defenseIncrease} de Defensa";
+        else if (nameLower.Contains("elíxir de reflejos"))
+            statInfo = $"\n\n<b>Efecto:</b> +{attackSpeedIncrease} Vel. Ataque";
+        else if (nameLower.Contains("corazón de vitalidad"))
+            statInfo = $"\n\n<b>Efecto:</b> +{healthIncrease} de Vida Máx.";
+        else if (nameLower.Contains("diamante céfiro"))
+            statInfo = $"\n\n<b>Efecto:</b> +{speedIncrease} Vel. Movimiento";
+        else if (nameLower.Contains("estrella de vigor"))
+            statInfo = $"\n\n<b>Efecto:</b> +{staminaIncrease}s Regén. Estamina";
+
+        return baseDesc + statInfo;
+    }
+
+    private void ConfigureSlotUI(int slotIndex, ItemDataSO chosenItem)
+    {
+        if (chosenItem != null && shopSlots[slotIndex] != null)
         {
-            // Resta el costo de la mejora de velocidad de las monedas del jugador
-            playerStats.gold -= currentCost;
-            // Aumenta la velocidad de movimiento del jugador en la cantidad especificada
-            playerStats.moveSpeed += speedIncrease;
-            // Incrementa la cantidad de veces compradas
-            speedUpgradeCount++;
-        }
-        else
-        {
-            ShowMessage(insufficientFundsMessage);
+            int currentIndex = slotIndex;
+            int calculatedPrice = GetItemCost(chosenItem);
+            string detailedDesc = GetDetailedDescription(chosenItem);
+
+            shopSlots[currentIndex].SetupSlot(
+                chosenItem.itemName,
+                detailedDesc,
+                chosenItem.itemIcon,
+                calculatedPrice,
+                () => TryBuyItem(currentIndex) 
+            );
         }
     }
 
-    //-- MEJORA DE DAÑO --
-    public void BuyDamageUpgrade()
+    public void TryBuyItem(int slotIndex)
     {
-        // Verifica si playerStats no es nulo antes de acceder a sus propiedades
         if (playerStats == null) return;
+        if (slotIndex < 0 || slotIndex >= currentShopOffers.Length) return;
 
-        // Calcula el costo actual en base a las compras realizadas
-        int currentCost = damageUpgradeCost + (damageUpgradeCount * damageCostIncrease);
+        ItemDataSO item = currentShopOffers[slotIndex];
+        if (item == null) return;
 
-        // Comprueba si el jugador tiene suficientes monedas para comprar la mejora de daño
-        if (playerStats.gold >= currentCost)
+        bool purchaseSuccess = false;
+        int cost = GetItemCost(item);
+
+        Debug.Log($"Intentando comprar slot {slotIndex}: {item.itemName} por {cost} oro. Oro actual: {playerStats.gold}");
+
+        if (playerStats.gold >= cost)
         {
-            // Resta el costo de la mejora de daño de las monedas del jugador
-            playerStats.gold -= currentCost;
-            // Aumenta el daño del jugador en la cantidad especificada
-            playerStats.damage += damageIncrease;
-            // Incrementa la cantidad de veces compradas
-            damageUpgradeCount++;
+            playerStats.gold -= cost;
+            string nameLower = item.itemName != null ? item.itemName.ToLower() : "";
+
+            if (nameLower.Contains("espada filosa"))
+            {
+                playerStats.damage += damageIncrease;
+                damageUpgradeCount++;
+                purchaseSuccess = true;
+            }
+            else if (nameLower.Contains("escudo protector"))
+            {
+                playerStats.defense += defenseIncrease;
+                defenseUpgradeCount++;
+                purchaseSuccess = true;
+            }
+            else if (nameLower.Contains("elíxir de reflejos"))
+            {
+                playerStats.fireRate += attackSpeedIncrease;
+                attackSpeedUpgradeCount++;
+                purchaseSuccess = true;
+            }
+            else if (nameLower.Contains("corazón de vitalidad"))
+            {
+                playerStats.maxHealth += healthIncrease;
+                healthUpgradeCount++;
+                purchaseSuccess = true;
+            }
+            else if (nameLower.Contains("diamante céfiro"))
+            {
+                playerStats.moveSpeed += speedIncrease;
+                speedUpgradeCount++;
+                purchaseSuccess = true;
+            }
+            else if (nameLower.Contains("estrella de vigor"))
+            {
+                playerStats.staminaRegenRate += staminaIncrease;
+                staminaUpgradeCount++;
+                purchaseSuccess = true;
+            }
         }
         else
         {
-            ShowMessage(insufficientFundsMessage);
+            Debug.Log("No hay suficiente oro para esta compra.");
+        }
+
+        if (purchaseSuccess)
+        {
+            if (inventoryController != null)
+            {
+                inventoryController.AddItem(item);
+            }
+
+            shopSlots[slotIndex].MarkAsPurchased();
+            Debug.Log("¡Compra exitosa! Slot marcado como comprado.");
         }
     }
 
-    //-- MEJORA DE VELOCIDAD DE ATAQUE --
-    public void BuyAttackSpeedUpgrade()
+    public void CloseShop()
     {
-        // Verifica si playerStats no es nulo antes de acceder a sus propiedades
-        if (playerStats == null) return;
-
-        // Calcula el costo actual en base a las compras realizadas
-        int currentCost = attackSpeedUpgradeCost + (attackSpeedUpgradeCount * attackSpeedCostIncrease);
-
-        // Comprueba si el jugador tiene suficientes monedas para comprar la mejora de velocidad de ataque
-        if (playerStats.gold >= currentCost)
+        if (shopPanelObject != null)
         {
-            // Resta el costo de la mejora de velocidad de ataque de las monedas del jugador
-            playerStats.gold -= currentCost;
-            // Aumenta la velocidad de ataque del jugador en la cantidad especificada
-            playerStats.fireRate += attackSpeedIncrease;
-            // Incrementa la cantidad de veces compradas
-            attackSpeedUpgradeCount++;
+            shopPanelObject.SetActive(false);
         }
         else
         {
-            ShowMessage(insufficientFundsMessage);
-        }
-    }
-
-    //-- MEJORA DE ESTAMINA --
-    public void BuyStaminaUpgrade()
-    {
-        // Verifica si playerStats no es nulo antes de acceder a sus propiedades
-        if (playerStats == null) return;
-
-        // Calcula el costo actual en base a las compras realizadas
-        int currentCost = staminaUpgradeCost + (staminaUpgradeCount * staminaCostIncrease);
-
-        // Comprueba si el jugador tiene suficientes monedas para comprar la mejora de estamina
-        if (playerStats.gold >= currentCost)
-        {
-            // Resta el costo de la mejora de estamina de las monedas del jugador
-            playerStats.gold -= currentCost;
-            // Aumenta la estamina del jugador en la cantidad especificada
-            playerStats.staminaRegenRate += staminaIncrease;
-            // Incrementa la cantidad de veces compradas
-            staminaUpgradeCount++;
-        }
-        else
-        {
-            ShowMessage(insufficientFundsMessage);
-        }
-    }
-
-    // Función auxiliar para mostrar mensajes en pantalla rápidamente
-    private void ShowMessage(string message)
-    {
-        // Verifica si messageText no es nulo antes de intentar asignar el texto
-        if (messageText != null)
-        {
-            // Asigna el mensaje al componente TextMeshProUGUI para mostrarlo en pantalla
-            messageText.text = message;
+            gameObject.SetActive(false);
         }
     }
 }

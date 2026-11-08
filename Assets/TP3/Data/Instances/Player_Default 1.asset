@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbce181c66c2f84f8581ddfa5757665, type: 3}
   m_Name: Player_Default 1
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsSO
-  maxHealth: 100
-  moveSpeed: 5
-  damage: 10
-  fireRate: 1
-  staminaRegenRate: 5
-  gold: 0
-  defense: 0
+  maxHealth: 220
+  moveSpeed: 24.5
+  damage: 30
+  fireRate: 2.4000003
+  staminaRegenRate: 55
+  gold: 60
+  defense: 35
