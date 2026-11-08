@@ -1,11 +1,19 @@
-Jako Knight
+Título del Proyecto: Jako Knight
 Desarrollado por EquipoMC
+datos de los desarrolladores (Nombre y Apellido, Usuario de Github y LU
 
 Roguelike de Acción 2D (Inspirado en "Soul Knight")
 Proyecto desarrollado para Programación de Videojuegos I. 
 Este juego es un roguelike de acción 2D construido íntegramente utilizando Unity, estructurado bajo un diseño modular y colaborativo entre 5 integrantes.
 
-**CAPTURAS DEL JUEGO Y EXPLICACION DEL JUEGO**
+** • Descripción del Juego: Resumen conceptual del juego presentado.**
+
+**CAPTURAS DEL JUEGO, 3 capturas distintas Y EXPLICACION DEL JUEGO**
+ 
+**• Guía de Controles: Descripción de teclas para movimiento, salto e interacción.**
+**• Detalle de Opcionales Elegidos: Explicación técnica breve de cuáles fueron las 2 opciones
+elegidas y en qué scripts se programaron.**
+
 
 Integrantes y Módulos del Equipo
 
@@ -39,7 +47,7 @@ Desarrollé la escena independiente del menú principal (MainMenu) integrando la
   * ¿Cómo lo realizó?:
 Diseñé y creé la arquitectura base de datos del proyecto mediante los ScriptableObjects, generando los assets iniciales de configuración (Player_Default.asset, variantes de enemigos e ítems) para alimentar dinámicamente los sistemas del juego desde el Inspector. Implementé la tienda de mejoras entre niveles, permitiendo visualizar los artículos disponibles, descontar saldo de monedas y aplicar las mejoras de forma inmediata a las estadísticas de la partida. Desarrollé el sistema de inventario interactivo accesible, estructurando los slots de almacenamiento y la visualización de descripciones de objetos, y expuse las interfaces públicas necesarias para registrar los ítems recogidos en el mundo sin interferir con las lógicas externas.
 
- Flujo de Trabajo y Normas de Colaboración
+Flujo de Trabajo y Normas de Colaboración
 
 1. Ramas independientes: Cada integrante trabaja exclusivamente en su propia rama creada a partir de un "main".
 2. Commits constantes: Se realizan commits pequeños, frecuentes y descriptivos que reflejan los avances reales de cada módulo.
