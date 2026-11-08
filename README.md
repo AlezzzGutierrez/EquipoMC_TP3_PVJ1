@@ -3,11 +3,11 @@ Título del Proyecto: Jako Knight
 Desarrollado por EquipoMC
 
 datos de los desarrolladores 
-Ramos Luca Joaquin TUV000403
-Nayla Aixa Leiva TUV000028
-Robert Fuentes Facundo Guillermo TU000808
-Gutierrez Gianella Alexandra TU000800
-Miranda Sara Bárbara 
+*Ramos Luca Joaquin LU: TUV000403
+*Nayla Aixa Leiva LU: TUV000028
+*Robert Fuentes Facundo Guillermo LU: TU000808
+*Gutierrez Gianella Alexandra LU: TU000800
+*Miranda Sara Barbara LU: TUV000749
 
 
 Roguelike de Acción 2D (Inspirado en "Soul Knight")
