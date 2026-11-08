@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Defense_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Escudo Protector
-  itemDescription: "Una placa en miniatura forjada con aleaciones met\xE1licas densas
-    y runas de protecci\xF3n. Su presencia en el equipo otorga una barrera pasiva
-    que absorbe eficazmente los impactos y reduce el da\xF1o recibido en combate."
+  itemDescription: "Una placa forjada con aleaciones met\xE1licas densas y runas
+    de protecci\xF3n. Su presencia en el equipo otorga una reduci\xF3n el da\xF1o
+    recibido en combate."
   itemIcon: {fileID: 21300000, guid: 8baea22c1eefed010aefdb00644a2e51, type: 3}
