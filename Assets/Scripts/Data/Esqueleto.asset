@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfaee4b87162a5846bc6f31e03bb2e8d, type: 3}
   m_Name: Esqueleto
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataSO
-  life: 5
-  speed: 3
-  damage: 1
-  range: 1.5
-  cooldown: 1
-  reward: 10
+  enemyName: Enemigo
+  enemyIcon: {fileID: 0}
+  maxHealth: 10
+  moveSpeed: 3
+  attackDamage: 10
+  attackRange: 1.5
+  attackCooldown: 1
+  rewardValue: 10
+  isRanged: 0
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 5
