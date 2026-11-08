@@ -12,14 +12,11 @@ public class EventoSala : MonoBehaviour
     {
         if (salaActivada) return;
 
-        if (other.CompareTag("Player") || other.CompareTag("Bullet"))
+        if (other.CompareTag("Player"))
         {
             salaActivada = true;
-
             cierresSala.SetActive(true);
             spawner.ActivarSpawner();
-
-            Debug.Log("¡Sala activada por: " + other.tag + "!");
         }
     }
 
