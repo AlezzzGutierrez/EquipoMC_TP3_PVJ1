@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Script: {fileID: 11500000, guid: b72a49ee80d86454380c1d67156935b2, type: 3}
   m_Name: Gold_Coins_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: "\xD3bolos Lunares"
-  itemDescription: Monedas pesadas forjadas bajo la luna. (+10 de Oro)
-  itemIcon: {fileID: 6355695395338774597, guid: 11a0233384ae475469c17886195e1b2d, type: 3}
+  itemName: Monedas Antiguas
+  itemDescription: "Un conjunto de divisas met\xE1licas brillantes encontradas en
+    el camino. Se acumulan directamente en las reservas de oro para facilitar transacciones
+    r\xE1pidas."
+  itemIcon: {fileID: 21300000, guid: f7c50b96859fbf74afd4b644506169cb, type: 3}

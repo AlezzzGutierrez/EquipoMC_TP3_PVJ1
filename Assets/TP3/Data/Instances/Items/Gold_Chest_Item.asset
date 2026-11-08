@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Script: {fileID: 11500000, guid: b72a49ee80d86454380c1d67156935b2, type: 3}
   m_Name: Gold_Chest_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: Arca del Alba Dorada
-  itemDescription: Cofre sellado con tesoros de eras pasadas. (+200 de Oro)
-  itemIcon: {fileID: 4221518710681134673, guid: d136c40318dbb5d44950c38764e2c430, type: 3}
+  itemName: Cofre del Tesoro
+  itemDescription: Un cofre compacto pero fortificado que resguarda una gran fortuna
+    en reliquias y oro brillante. Representa una valiosa reserva de recursos para
+    adquirir objetos avanzados.
+  itemIcon: {fileID: 21300000, guid: 6a7d38a46dc1b01dcb0dcbc167e71206, type: 3}

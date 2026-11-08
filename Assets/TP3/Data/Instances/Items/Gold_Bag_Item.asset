@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Script: {fileID: 11500000, guid: b72a49ee80d86454380c1d67156935b2, type: 3}
   m_Name: Gold_Bag_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: Morral de Polvo Estelar
-  itemDescription: "Peque\xF1a reserva de riquezas brillantes. (+50 de Oro)"
-  itemIcon: {fileID: -3765899290393030900, guid: 509e19e96fc3d1e4cb60200ac65cb784, type: 3}
+  itemName: Bolsa de Monedas
+  itemDescription: "Un peque\xF1o contenedor de cuero gastado atado con hilo, repleto
+    de valiosas divisas acu\xF1adas. Sirve como moneda de cambio universal en la
+    tienda de mejoras y con los mercaderes."
+  itemIcon: {fileID: 21300000, guid: fda5f80c38647357be1f59bf82ae4198, type: 3}

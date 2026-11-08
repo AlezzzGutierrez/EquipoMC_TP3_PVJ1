@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72a49ee80d86454380c1d67156935b2, type: 3}
   m_Name: Healt_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: Objeto
-  itemDescription: "Descripci\xF3n"
+  itemName: "Coraz\xF3n de Vitalidad"
+  itemDescription: "Un emblema palpitante con forma de coraz\xF3n que emana una c\xE1lida
+    energ\xEDa curativa. Al ser almacenado o consumido en el inventario, restaura
+    los puntos de salud cr\xEDticos y refuerza la resistencia f\xEDsica general del
+    personaje."
   itemIcon: {fileID: 21300000, guid: a11b878d437c3d927ce2348305d66e70, type: 3}

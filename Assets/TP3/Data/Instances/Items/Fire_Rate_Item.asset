@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Script: {fileID: 11500000, guid: b72a49ee80d86454380c1d67156935b2, type: 3}
   m_Name: Fire_Rate_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: Pulso Arcano
-  itemDescription: Acelera el flujo del tiempo en tus armas. (+20% de Velocidad de
-    Ataque)
-  itemIcon: {fileID: 886849660564937388, guid: 82be8fc22d1107a40b9f6bde0c0ce126, type: 3}
+  itemName: "El\xEDxir de Reflejos"
+  itemDescription: "Un t\xF3nico efervescente de color \xE1mbar que estimula directamente
+    el sistema nervioso y la coordinaci\xF3n, acelerando la frecuencia y velocidad
+    de los ataques ejecutados."
+  itemIcon: {fileID: 21300000, guid: 8e5db6c274583ba4415c3610a64756d3, type: 3}

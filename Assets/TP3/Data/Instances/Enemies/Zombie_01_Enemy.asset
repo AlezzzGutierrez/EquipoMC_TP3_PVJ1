@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bde8953533c989b409ae18ed9ae796df, type: 3}
+  m_Script: {fileID: 11500000, guid: 95d5b92fdc3f9534cb5c9a01985cd6b0, type: 3}
   m_Name: Zombie_01_Enemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDataSO
   nameEnemy: Caminante Putrefacto
-  description: "Un alma errante atrapada en un cuerpo en descomposici\xF3n."
-  maxHealth: 40
-  damage: 8
-  moveSpeed: 2
-  attackRange: 1.5
-  attackCooldown: 1.5
-  coinReward: 5
+  description: Un muerto viviente lento pero persistente que busca abrumar por desgaste.
+  maxHealth: 50
+  damage: 10
+  moveSpeed: 3
+  attackRange: 2
+  attackCooldown: 1
+  coinReward: 10

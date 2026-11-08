@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Script: {fileID: 11500000, guid: b72a49ee80d86454380c1d67156935b2, type: 3}
   m_Name: Stamina_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: Chispa Astral
-  itemDescription: "Infunde energ\xEDa c\xF3smica pura. (Duraci\xF3n: +15 segundos
-    de uso)"
-  itemIcon: {fileID: 3941814312951553913, guid: d16ce85e1ebcab345b8db2aeaacb8d5e, type: 3}
+  itemName: Estrella de Vigor
+  itemDescription: "Un fragmento estelar resplandeciente que irradia una energ\xEDa
+    c\xF3smica revitalizante para despejar el cansancio y reponer por completo la
+    energ\xEDa para mantener el rendimiento."
+  itemIcon: {fileID: 21300000, guid: f6f8a234592f35f6d7202ff3fda0214b, type: 3}

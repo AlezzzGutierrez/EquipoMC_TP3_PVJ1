@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d68ce910758a14428196a30611a1d76, type: 3}
+  m_Script: {fileID: 11500000, guid: b72a49ee80d86454380c1d67156935b2, type: 3}
   m_Name: Defense_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: "\xC9gida de Piedra Eterna"
-  itemDescription: "Una barrera m\xEDstica que absorbe los embates. (+15 Puntos de
-    Defensa)"
-  itemIcon: {fileID: 466824447609058672, guid: a773878e884c6494c937883bbb6cfd6a, type: 3}
+  itemName: Escudo Protector
+  itemDescription: "Una placa en miniatura forjada con aleaciones met\xE1licas densas
+    y runas de protecci\xF3n. Su presencia en el equipo otorga una barrera pasiva
+    que absorbe eficazmente los impactos y reduce el da\xF1o recibido en combate."
+  itemIcon: {fileID: 21300000, guid: 8baea22c1eefed010aefdb00644a2e51, type: 3}
