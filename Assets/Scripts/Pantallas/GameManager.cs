@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Nombres de escenas (deben coincidir exactamente)")]
     [SerializeField] private string mainMenuScene = "MainMenu";
-    [SerializeField] private string firstLevelScene = "Level1";
-    [SerializeField] private string secondLevelScene = "Level2";
+    [SerializeField] private string firstLevelScene = "Nivel1";
+    [SerializeField] private string secondLevelScene = "Nivel2";
 
     // La UI se suscribe a este evento. El GameManager no conoce a la UI.
     public event Action<GameState> OnStateChanged;

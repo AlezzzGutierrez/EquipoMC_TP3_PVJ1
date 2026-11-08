@@ -1453,8 +1453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   mainMenuScene: MainMenu
-  firstLevelScene: Level1
-  secondLevelScene: Level2
+  firstLevelScene: Nivel1
+  secondLevelScene: Nivel2
 --- !u!4 &1215729112
 Transform:
   m_ObjectHideFlags: 0
