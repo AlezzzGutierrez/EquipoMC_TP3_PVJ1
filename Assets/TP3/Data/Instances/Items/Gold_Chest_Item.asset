@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Cofre del Tesoro
   itemDescription: Un cofre compacto pero fortificado que resguarda una gran fortuna
-    en reliquias y oro brillante. Representa una valiosa reserva de recursos para
-    adquirir objetos avanzados.
+    en oro brillante. Representa una valiosa reserva de recursos para adquirir objetos
+    avanzados.
   itemIcon: {fileID: 21300000, guid: 6a7d38a46dc1b01dcb0dcbc167e71206, type: 3}
