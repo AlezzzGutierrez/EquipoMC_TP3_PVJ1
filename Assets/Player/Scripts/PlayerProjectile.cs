@@ -1,4 +1,5 @@
 
+
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -46,13 +47,11 @@ public class PlayerProjectile : MonoBehaviour
             }
         }
 
-
         rb.linearVelocity = transform.right * speed;
 
         Destroy(gameObject, lifetime);
     }
 
-    //modificado
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
