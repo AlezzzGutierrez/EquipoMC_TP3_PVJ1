@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b72a49ee80d86454380c1d67156935b2, type: 3}
+  m_Name: Move_Speed_Item
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
+  itemName: "Diamante C\xE9firo"
+  itemDescription: "Una gema tallada con precisi\xF3n geom\xE9trica que aligera los
+    pasos del portador, permiti\xE9ndole desplazarse por el mapa con una agilidad
+    y rapidez sobresalientes."
+  itemIcon: {fileID: 21300000, guid: f82ebbd7231e011b4e57d39176bb59ab, type: 3}
