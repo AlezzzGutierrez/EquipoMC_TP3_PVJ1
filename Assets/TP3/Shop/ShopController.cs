@@ -9,6 +9,9 @@ public class ShopController : MonoBehaviour
     [Header("Referencia al Inventario")]
     public InventoryController inventoryController;
 
+    [Header("Configuración de UI")]
+    public GameObject shopPanel;
+
     [Header("Lista de Ítems (ItemDataSO) Disponibles para la Tienda")]
     public List<ItemDataSO> allPossibleItems;
 
@@ -49,12 +52,32 @@ public class ShopController : MonoBehaviour
 
     private ItemDataSO[] currentShopOffers = new ItemDataSO[4];
 
-    [Header("Panel Visual de la Tienda a Cerrar")]
-    public GameObject shopPanelObject;
-
-    void OnEnable()
+    void Start()
     {
-        GenerateRandomShopOffers();
+        // La tienda arranca cerrada y oculta obligatoriamente al iniciar el nivel
+        if (shopPanel != null)
+        {
+            shopPanel.SetActive(false);
+        }
+    }
+
+    // Método exclusivo para abrir la tienda al terminar el nivel
+    public void OpenShop()
+    {
+        if (shopPanel != null)
+        {
+            shopPanel.SetActive(true);
+            GenerateRandomShopOffers(); // Genera las ofertas frescas únicamente al abrirse por victoria
+        }
+    }
+
+    // Método para cerrar la tienda (por ejemplo, al hacer clic en un botón de "Continuar al siguiente nivel")
+    public void CloseShop()
+    {
+        if (shopPanel != null)
+        {
+            shopPanel.SetActive(false);
+        }
     }
 
     public void GenerateRandomShopOffers()
@@ -144,7 +167,7 @@ public class ShopController : MonoBehaviour
                 detailedDesc,
                 chosenItem.itemIcon,
                 calculatedPrice,
-                () => TryBuyItem(currentIndex) 
+                () => TryBuyItem(currentIndex)
             );
         }
     }
@@ -218,18 +241,6 @@ public class ShopController : MonoBehaviour
 
             shopSlots[slotIndex].MarkAsPurchased();
             Debug.Log("¡Compra exitosa! Slot marcado como comprado.");
-        }
-    }
-
-    public void CloseShop()
-    {
-        if (shopPanelObject != null)
-        {
-            shopPanelObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(false);
         }
     }
 }
