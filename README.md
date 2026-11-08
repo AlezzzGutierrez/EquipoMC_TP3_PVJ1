@@ -1,16 +1,19 @@
 Título del Proyecto: Jako Knight
+
 Desarrollado por EquipoMC
+
 datos de los desarrolladores (Nombre y Apellido, Usuario de Github y LU
 
 Roguelike de Acción 2D (Inspirado en "Soul Knight")
 Proyecto desarrollado para Programación de Videojuegos I. 
 Este juego es un roguelike de acción 2D construido íntegramente utilizando Unity, estructurado bajo un diseño modular y colaborativo entre 5 integrantes.
 
-** • Descripción del Juego: Resumen conceptual del juego presentado.**
+**• Descripción del Juego: Resumen conceptual del juego presentado.**
 
 **CAPTURAS DEL JUEGO, 3 capturas distintas Y EXPLICACION DEL JUEGO**
  
 **• Guía de Controles: Descripción de teclas para movimiento, salto e interacción.**
+
 **• Detalle de Opcionales Elegidos: Explicación técnica breve de cuáles fueron las 2 opciones
 elegidas y en qué scripts se programaron.**
 
