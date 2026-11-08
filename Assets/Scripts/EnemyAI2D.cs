@@ -65,7 +65,7 @@ public class EnemyAI2D : MonoBehaviour
         }
     }
 
-    private void ExecuteAttack()
+private void ExecuteAttack()
     {
         if (enemyData.IsRanged && enemyData.ProjectilePrefab != null)
         {
@@ -82,6 +82,16 @@ public class EnemyAI2D : MonoBehaviour
         {
             // Lógica de ataque cuerpo a cuerpo
             Debug.Log($"{enemyData.EnemyName} atacó al jugador haciendo {enemyData.AttackDamage} de daño.");
+
+            // 👉 AGREGAR ESTO: Buscar el componente de salud del jugador y restarle vida
+            if (player != null)
+            {
+                PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(enemyData.AttackDamage);
+                }
+            }
         }
     }
 
